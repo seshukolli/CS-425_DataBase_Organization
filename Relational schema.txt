@@ -1,0 +1,123 @@
+CREATE TABLE Address (
+    Address_id INT PRIMARY KEY,
+    Plot_no INT NOT NULL,
+    Street_name VARCHAR(255) NOT NULL,
+    Street_no INT NOT NULL,
+    City VARCHAR(255) NOT NULL,
+    State VARCHAR(255) NOT NULL,
+    Pincode VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Credit_Debit_card(
+	Card_number int Primary key,
+    C_Name Varchar(255) NOT NULL,
+    Expairy DATE NOT NULL,
+    cvv int NOT NULL,
+	Address_id INT NOT NULL REFERENCES Address(Address_id)
+);
+
+CREATE TABLE Renters (
+  User_id INT PRIMARY KEY ,
+  First_Name VARCHAR(255) NOT NULL,
+  Middle_Name VARCHAR(255),
+  Last_Name VARCHAR(255) NOT NULL,
+  Email VARCHAR(255) NOT NULL,
+  Password VARCHAR(255) NOT NULL,
+  Budget VARCHAR(15) NOT NULL,
+  prefered_location VARCHAR(255) NOT NULL,
+  Move_in DATE NOT NULL,
+  prefered_movein date NOT NULL;
+  Card_number INT NOT NULL REFERENCES Credit_Debit_card(Card_number),
+  Address_id INT NOT NULL REFERENCES Address(Address_id),
+  
+);
+
+
+CREATE TABLE Agent (
+    Agent_id INT PRIMARY KEY,
+	First_Name VARCHAR(255) NOT NULL,
+  Middle_Name VARCHAR(255),
+  Last_Name VARCHAR(255) NOT NULL,
+  Email VARCHAR(255) NOT NULL,
+  Password VARCHAR(255) NOT NULL,
+    phone_no VARCHAR(15)  NOT NULL,
+    Job_title VARCHAR(255)  NOT NULL,
+    Address_id INT NOT NULL REFERENCES Address(Address_id),
+    
+);
+
+
+CREATE TABLE Agency(
+	Agency_id INT PRIMARY KEY,
+	Agency_name VARCHAR(255) NOT NULL,
+	Address_id INT NOT NULL REFERENCES Address(Address_id),
+	Agent_id INT NOT NULL REFERENCES Agent(Agent_id)
+);
+
+Create table Neighbourhood(
+	N_Name varchar(20) primary key,
+    N_id int NOT NULL,
+    Crime_rate varchar(100) ,
+    NearBySchools varchar(100)					
+);    
+
+CREATE TABLE property(
+	Property_id INT  Primary key,
+    Availability varchar(10) NOT NULL,
+    Square_footage Varchar(20) NOT NULL,
+    price Varchar(10) NOT NULL,
+    property_type VARCHAR(255) NOT NULL,
+    Rent_or_sale varchar(10) NOT NULL,
+	description varchar(100) NOT NULL,
+	Address_id INT NOT NULL REFERENCES Address(Address_id),
+	N_Name varchar(255) NOT NULL REFERENCES Neighbourhood(N_Name)
+);
+
+
+CREATE TABLE property_booking(
+    Booking_id SERIAL PRIMARY KEY,
+    Rental_cost INT,
+    Start_date DATE,
+    End_date DATE,
+    Reward_points VARCHAR(255),
+	Card_number INT NOT NULL REFERENCES Credit_Debit_card(Card_number),
+	Property_id INT NOT NULL REFERENCES property(Property_id),
+	Agency_id INT NOT NULL REFERENCES Agency(Agency_id)
+);
+
+       
+CREATE TABLE House (
+Property_id INT PRIMARY KEY NOT NULL REFERENCES property(Property_id),
+    Security varchar(100),
+    Floors int,
+    BathRooms int,
+    No_Of_Rooms int
+);
+
+CREATE TABLE Appartment (
+    Property_id INT PRIMARY KEY NOT NULL REFERENCES property(Property_id),
+    Security VARCHAR(100),
+    Building_Type VARCHAR(20),
+    No_Of_Rooms INT
+);
+
+CREATE TABLE comercial_building (
+	Property_id INT PRIMARY KEY NOT NULL REFERENCES property(Property_id),
+	Accessibility VARCHAR(20),
+    Amenities VARCHAR(20),
+    Business_type VARCHAR(20)
+);
+
+CREATE TABLE vacation_homes (
+	Property_id INT PRIMARY KEY NOT NULL REFERENCES property(Property_id),
+    No_of_rooms INT,
+    Attractions VARCHAR(100),
+    Amenities VARCHAR(20)
+);
+
+create table land(
+	Property_id INT PRIMARY KEY NOT NULL REFERENCES property(Property_id),
+	land_type varchar(20),
+      nearby_developments varchar(100)
+);
+
