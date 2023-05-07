@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registration Page</title>
+<style>
+/* Center the form */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+/* Style the heading */
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Style the labels */
+label {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+/* Style the input fields */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+select {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 0.3rem;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Style the select dropdown */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 9.5l6.5 6.5 6.5-6.5" stroke="black" stroke-width="1.5" fill="none" /></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.5rem top 50%;
+  background-size: 1.5rem auto;
+  padding-right: 2.5rem;
+}
+
+/* Style the submit button */
+input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* Style the link to login */
+p a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+/* Style the additional fields */
+.additional-fields {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.additional-fields label,
+.additional-fields input {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+.additional-fields input {
+  margin-bottom: 1rem;
+}
+</style>
+
+</head>
+<body>
+<form method="POST">
+<h2>Registration Form</h2>
+<label for="name">Name:</label>
+<input type="text" id="name" name="name"><br><br>
+<label for="email">Email:</label>
+<input type="email" id="email" name="email"><br><br>
+<label for="phone">Phone:</label>
+<input type="tel" id="phone" name="phone"><br><br>
+<label for="password">Password:</label>
+<input type="password" id="password" name="password"><br><br>
+<label for="type">Type:</label>
+<select id="type" name="type" onchange="showFields()">
+  <option value="select">select</option>
+<option value="agent">Agent</option>
+<option value="renter">Prospective Renter</option>
+</select><br><br>
+
+<div id="agentFields" style="display:none;">
+<label for="agency">Agency:</label>
+<input type="text" id="agency" name="agency"><br><br>
+</div>
+<div id="renterFields" style="display:none;">
+
+<label for="location">location:</label>
+<input type="text" id="location" name="location"><br><br>
+<label for="budget">Budget:</label>
+<input type="number" id="budget" name="budget"><br><br>
+<label for="movein">Move-in Date:</label>
+<input type="date" id="movein" name="movein"><br><br>
+</div>
+<input type="submit" value="Register">
+<p>Already have an account? <a href="{{url_for('login')}}">Login</a></p>
+</form>
+
+<script>
+function showFields() {
+var type = document.getElementById("type").value;
+var agentFields = document.getElementById("agentFields");
+var renterFields = document.getElementById("renterFields");
+
+if (type == "agent") {
+agentFields.style.display = "block";
+renterFields.style.display = "none";
+}
+else if (type == "renter") {
+agentFields.style.display = "none";
+renterFields.style.display = "block";
+}
+else {
+agentFields.style.display = "none";
+renterFields.style.display = "none";
+}
+}
+</script>
+
+</body>
+</html>

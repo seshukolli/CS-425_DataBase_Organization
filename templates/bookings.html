@@ -1,0 +1,120 @@
+<html>
+	<head>
+		<style>
+			body {
+			  font-family: Arial, sans-serif;
+			  background-color: #f1f1f1;
+			}
+			
+			h2 {
+			  text-align: center;
+			  margin-top: 50px;
+			  color: #333;
+			}
+			
+			table {
+			  margin: auto;
+			  border-collapse: separate;
+			  border-spacing: 10px;
+			  background-color: #fff;
+			  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+			  border-radius: 10px;
+			  overflow: hidden;
+			  width: 90%;
+			  max-width: 1200px;
+			  table-layout: fixed;
+			}
+			
+			thead {
+			  background-color: #333;
+			  color: #fff;
+			  text-align: left;
+			  padding: 10px;
+			}
+			
+			th, td {
+			  padding: 10px;
+			  vertical-align: middle;
+			  text-align: center;
+			}
+			
+			th:first-child, td:first-child {
+			  text-align: left;
+			}
+			
+			tbody tr:hover {
+			  background-color: #f5f5f5;
+			}
+			
+			button {
+			  display: block;
+			  margin: 30px auto;
+			  padding: 10px 20px;
+			  background-color: #333;
+			  color: #fff;
+			  border: none;
+			  border-radius: 5px;
+			  font-size: 16px;
+			  cursor: pointer;
+			  transition: background-color 0.3s ease;
+			}
+			
+			button:hover {
+			  background-color: #555;
+			}
+		  </style>
+			<script>
+				function goBack() {
+					window.history.back();
+			  	}
+			</script>
+
+	</head>
+	<body>
+		<main>
+			<h2>Bookings</h2>
+			
+			<table>
+				<thead>
+					<tr>
+						<th>Booking ID</th>
+						<th>Property Type</th><td></td><td></td>
+						<th>Location</th>
+						<th>City</th>
+						<th>Address</th>
+						<th>Price</th>
+						<th>Description</th>
+						<th>Availability</th>
+						<th>Crimerate</th>
+						<th>Nearby Schools</th>
+
+					</tr>
+				</thead>
+				
+				<tbody>
+					{%for row in data%}
+						<tr>
+							<td>{{row[1]}}</td>
+							<td>{{row[2]}}</td><td></td><td></td>
+							<td>{{row[3]}}</td>
+							<td>{{row[4]}}</td>
+							<td>{{row[5]}}</td>
+							<td>{{row[6]}}</td>
+							<td>{{row[7]}}</td>
+							<td>{{row[8]}}</td>
+							<td>{{row[9]}}</td>
+							<td>{{row[10]}}</td>
+						</tr>
+					{%endfor%}
+				</tbody>
+				
+	
+				
+				
+			</table>
+		</main>
+		<button onclick="goBack()">Go Back</button>
+
+	</body>
+    
+</html>

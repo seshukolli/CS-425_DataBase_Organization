@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Real Estate Management System</title>
+    <style>
+        body {
+  font-family: Arial, sans-serif;
+  background-color: #f1f1f1;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin-right: 20px;
+}
+
+nav li a {
+  color: white;
+  text-decoration: none;
+}
+
+nav li a:hover {
+  text-decoration: underline;
+}
+
+main {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #333;
+  color: white;
+}
+
+td:last-child {
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+	</style>
+        </style>
+</head>
+<body>
+	<header>
+		<h1>Welcome to Real Estate Management System</h1>
+		<nav>
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Contact</a></li>
+				<li><a href="#">Logout</a></li>
+				<br></br>
+				<li><a href="{{url_for('rewards',email=email)}}">Rewards</a></li>
+				<li><a href="{{url_for('bookings',data=email)}}">Bookings</a></li>
+			</ul>
+		</nav>
+	</header>
+	
+
+	<main>
+		<h2>List of Available Properties</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Property ID</th>
+					<th>Property Type</th><td></td><td></td>
+					<th>Location</th>
+					<th>City</th>
+                    <th> Address</th>
+                    <th>Price</th>
+					<th>Discription</th>
+					<th>Crimerate</th>
+					<th>Nearby Schools</th>
+					<th>Availability</th>
+
+				</tr>
+			</thead>
+			
+			<tbody>
+				{%for row in data%}
+					<tr>
+						<td>{{row[1]}}</td>
+						<td>{{row[2]}}</td><td></td><td></td>
+						<td>{{row[3]}}</td>
+						<td>{{row[4]}}</td>
+						<td>{{row[5]}}</td>
+						<td>{{row[6]}}</td>
+						<td>{{row[7]}}</td>
+						<td>{{row[11]}}</td>
+						<td>{{row[12]}}</td>
+						<td>{{row[8]}}</td>
+						<td><button onclick="window.location='{{ url_for('book_now', id=row[1],email=email)}}'">Book Now</button></td>
+					</tr>
+
+				{%endfor%}
+			</tbody>
+			
+
+			
+			
+		</table>
+	</main>
+	
+
+	
+	<script>
+		function bookNow(houseId) {
+
+			console.log(houseId);
+		}
+	</script>
+		
